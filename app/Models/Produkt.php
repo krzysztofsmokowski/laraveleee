@@ -9,9 +9,10 @@ class Produkt extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'image_path',
         'name',
         'description',
         'price',
-        'amount'
+        'amount',
     ];
 }

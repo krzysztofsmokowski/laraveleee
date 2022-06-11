@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProduktRequest;
 use App\Models\Produkt;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+
 
 class ProduktController extends Controller
 {
@@ -35,12 +37,12 @@ class ProduktController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  ProduktRequest  $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(ProduktRequest $request): RedirectResponse
     {
-        $produkt = new Produkt($request->all());
+        $produkt = new Produkt($request->validated());
         $produkt->save();
         return redirect(route('produkts.index'));
     }
@@ -61,10 +63,12 @@ class ProduktController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Produkt  $produkt
+     * @param  Request  $request
      * @return View
      */
     public function edit(Produkt $produkt):View
     {
+
         return view('produkts.edit',[
             'produkt' => $produkt
         ]);
@@ -73,13 +77,13 @@ class ProduktController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ProduktRequest  $request
      * @param  \App\Models\Produkt  $produkt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produkt $produkt)
+    public function update(ProduktRequest $request, Produkt $produkt)
     {
-        $produkt->fill($request->all());
+        $produkt->fill($request->validated());
         $produkt->save();
         return redirect(route('produkts.index'));
     }

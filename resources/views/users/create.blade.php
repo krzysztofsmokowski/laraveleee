@@ -8,11 +8,11 @@
                 <div class="card-header">Dodaj produkt</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('produkts.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('users.store') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">Nazwa produktu</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">Nazwa uzytkownika</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -26,12 +26,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="description" class="col-md-4 col-form-label text-md-end">Opis produktu</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">email</label>
 
                             <div class="col-md-6">
-                                <input id="description" class="form-control @error('description') is-invalid @enderror" autofocus{{ old('description') }} name="description"></input>
+                                <input id="email" class="form-control @error('email') is-invalid @enderror" autofocus{{ old('email') }} name="email"></input>
 
-                                @error('description')
+                                @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -40,33 +40,13 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="price" class="col-md-4 col-form-label text-md-end">Cena</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">haslo</label>
 
                             <div class="col-md-6">
-                                <input id="price" class="form-control @error('price') is-invalid @enderror" name="price" >
+                                <input id="password" class="form-control @error('password') is-invalid @enderror" autofocus{{ old('password') }} name="password"></input>
 
-                                @error('price')
+                                @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="image" class="col-md-4 col-form-label text-md-end">sciezka do pliku</label>
-
-                            <div class="col-md-6">
-                                <input id="price" type="file" class="form-control name="image">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="amount" class="col-md-4 col-form-label text-md-end">Ilość</label>
-
-                            <div class="col-md-6">
-                                <input id="amount"class="form-control @error('amount') is-invalid @enderror" name="amount">
-
-                                @error('amount')
-                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

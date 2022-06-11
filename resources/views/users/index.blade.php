@@ -2,7 +2,12 @@
 
 @section('content')
     <div class="container">
+
     <table class="table">
+
+        <a class="float-right" href="{{ route('users.create') }}">
+            <button type="button" class="btn btn-secondary">Dodaj</button>
+        </a>
         <thead class="thead-dark">
         <tr>
             <th scope="col">ID</th>
@@ -17,7 +22,12 @@
             <th scope="row">{{  $user->id }}</th>
             <td>{{  $user->email }}</td>
             <td>{{  $user->name }}</td>
-            <td><button class="btn btn-danger btn-sm remove" data-user-id="{{ $user->id }}">X</button></td>
+            <td><button class="btn btn-danger btn-sm remove" data-user-id="{{ $user->id }}">X</button>
+                <a href="{{ route('users.edit', $user->id) }}">
+                    <button class="btn btn-secondary">Edytuj</button>
+                </a>
+
+            </td>
         </tr>
         @endforeach
         </tbody>
@@ -25,20 +35,6 @@
     </table>
 @endsection
 @section('javascript')
-/*    $('.remove').click(function(){
-        $.ajax({
-            method: "DELETE",
-            url: "http://sklep.test/users/" + $(this).data("id")
-            //data: { id: $(this).data("id") }
-        })
-        .done(function( response ) {
-            window.location.reload();
-        })
-        .fail(function ( response){
-            alert("ERROR");
-        })
-    });
-*/
 $(function(){
     $('.remove').click(function(e) {
     $.ajax({

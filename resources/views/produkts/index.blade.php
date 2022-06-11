@@ -8,9 +8,7 @@
                     <h1>Produkty</h1>
                 </div>
                 <div class="col-6">
-                    <a class="float-right" href="{{ route('produkts.create') }}">
-                        <button type="button" class="btn btn-secondary">Dodaj</button>
-                    </a>
+
 
                 </div>
             </div>
@@ -22,7 +20,9 @@
                 <th scope="col">Opis</th>
                 <th scope="col">Ilość</th>
                 <th scope="col">Cena</th>
+                @can('Administrator')
                 <th scope="col">Akcje</th>
+                @endcan
             </tr>
             </thead>
             <tbody>
@@ -35,11 +35,16 @@
                     <td>{{  $produkt->price }}</td>
 
                     <td>
+                        @can('Administrator')
                     <a href="{{ route('produkts.edit', $produkt->id) }}">
                         <button class="btn btn-secondary">Edytuj</button>
                     </a>
                         <button class="btn btn-danger btn-sm remove" data-id="{{ $produkt->id }}">X</button>
                     </td>
+                    <a class="float-right" href="{{ route('produkts.create') }}">
+                        <button type="button" class="btn btn-secondary">Dodaj</button>
+                    </a>
+                    @endcan
                 </tr>
             @endforeach
             </tbody>
