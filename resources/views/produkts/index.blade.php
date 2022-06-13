@@ -24,6 +24,9 @@
                 <th scope="col">Akcje</th>
                 @endcan
             </tr>
+            <a class="float-right" href="{{ route('produkts.create') }}">
+                <button type="button" class="btn btn-secondary">Dodaj</button>
+            </a>
             </thead>
             <tbody>
             @foreach($produkts as $produkt)
@@ -33,17 +36,17 @@
                     <td>{{  $produkt->description }}</td>
                     <td>{{  $produkt->amount }}</td>
                     <td>{{  $produkt->price }}</td>
-
                     <td>
                         @can('Administrator')
                     <a href="{{ route('produkts.edit', $produkt->id) }}">
                         <button class="btn btn-secondary">Edytuj</button>
                     </a>
+                            <a href="{{ route('produkts.show', $produkt->id) }}">
+                                <button class="btn btn-secondary">pokaz</button>
+                            </a>
+
                         <button class="btn btn-danger btn-sm remove" data-id="{{ $produkt->id }}">X</button>
                     </td>
-                    <a class="float-right" href="{{ route('produkts.create') }}">
-                        <button type="button" class="btn btn-secondary">Dodaj</button>
-                    </a>
                     @endcan
                 </tr>
             @endforeach

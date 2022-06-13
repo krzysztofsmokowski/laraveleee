@@ -55,8 +55,9 @@ class ProduktController extends Controller
      */
     public function show(Produkt $produkt): View
     {
-        return view('produkts')
-    ;
+      return view("produkts.show", [
+        'produkt' => $produkt
+      ]);
     }
 
     /**

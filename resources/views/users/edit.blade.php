@@ -28,7 +28,7 @@
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">mail</label>
                             <div class="col-md-6">
-                                <input id="email" class="form-control @error('email') is-invalid @enderror" autofocus{{ $user->email }} name="email"></input>
+                                <input id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $user->email }}" name="email"></input>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">haslo</label>
 
                             <div class="col-md-6">
-                                <input id="password" class="form-control @error('password') is-invalid @enderror" value="{{ $user->password }} required name="password">
+                                <input id="password" class="form-control @error('password') is-invalid @enderror" value="{{ $user->password }}" required name="password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

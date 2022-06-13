@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class UsersController extends Controller
@@ -82,7 +84,9 @@ class UsersController extends Controller
     public function update(UsersRequest $request, User $user)
     {
         $user->fill($request->validated());
+        //$user->Hash::make($request['password']);
         $user->save();
+
         return redirect(route('users.index'));
     }
 
