@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 Route::get('/produkts', [App\Http\Controllers\ProduktController::class, 'index']) ->name('produkts.index')->middleware('auth');
 Route::get('/cart/list', [App\Http\Controllers\CartController::class, 'index']) ->name('cart.index')->middleware('auth');
 Route::post('/cart/{produkt}', [App\Http\Controllers\CartController::class, 'store']) ->name('cart.store')->middleware('auth');

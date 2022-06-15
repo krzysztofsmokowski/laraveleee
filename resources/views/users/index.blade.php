@@ -13,6 +13,7 @@
             <th scope="col">ID</th>
             <th scope="col">email</th>
             <th scope="col">imie</th>
+            <th scope="col">rola</th>
             <th scope="col">akcje</th>
         </tr>
         </thead>
@@ -22,6 +23,7 @@
             <th scope="row">{{  $user->id }}</th>
             <td>{{  $user->email }}</td>
             <td>{{  $user->name }}</td>
+            <td>{{  $user->role }}</td>
             <td><button class="btn btn-danger btn-sm remove" data-user-id="{{ $user->id }}">X</button>
                 <a href="{{ route('users.edit', $user->id) }}">
                     <button class="btn btn-secondary">Edytuj</button>
