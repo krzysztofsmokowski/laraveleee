@@ -31,7 +31,9 @@
             <tbody>
             @foreach($produkts as $produkt)
                 <tr>
+                    @can('Administrator')
                     <th scope="row">{{  $produkt->id }}</th>
+                    @endcan
                     <td>{{  $produkt->name }}</td>
                     <td>{{  $produkt->description }}</td>
                     <td>{{  $produkt->amount }}</td>
@@ -41,20 +43,22 @@
                     <a href="{{ route('produkts.edit', $produkt->id) }}">
                         <button class="btn btn-secondary">Edytuj</button>
                     </a>
-
-
                         <button class="btn btn-danger btn-sm remove" data-id="{{ $produkt->id }}">X</button>
-                    </td>
                     @endcan
+                    </td>
+                    <td>
+                        <button class="btn btn-secondary do-kosza" data-id="{{ $produkt->id }}">Dodaj do koszyka</button>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
     </div>
-
-        </div>
     </table>
 @endsection
 @section('javascript')
+    const Produkt_data = {
+    do_koszyka: '{{ url('cart') }}'
+            }
     $(function(){
     $('.remove').click(function(e) {
     $.ajax({
@@ -69,4 +73,32 @@
     });
     });
     });
+            $(function() {
+            $('button.do-kosza').click(function(event) {
+            event.preventDefault();
+            $.ajax({
+            method: "POST",
+            url: Produkt_data.do_koszyka + '/' + $(this).data('id')
+            })
+            .done(function () {
+            Swal.fire({
+            title: 'Sukces!!!',
+            text: 'Produkt jest w twoim koszyku',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: '<i class="fas fa-cart-plus"></i> Przejdź do koszyka',
+            cancelButtonText: '<i class="fas fa-shopping-bag"></i> Kontynuuj zakupy'
+            }).then((result) => {
+            if (result.isConfirmed) {
+            alert('udalo sie');
+            }
+            })
+            })
+            .fail(function () {
+            Swal.fire('Rip', 'błąd', 'error');
+            });
+            });})
 @endsection
+        @section('js')
+            <script src="{{ asset("js/kosz.js") }}"></script>
+        @endsection

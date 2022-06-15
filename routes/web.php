@@ -16,6 +16,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/produkts', [App\Http\Controllers\ProduktController::class, 'index']) ->name('produkts.index')->middleware('auth');
+Route::get('/cart/list', [App\Http\Controllers\CartController::class, 'index']) ->name('cart.index')->middleware('auth');
+Route::post('/cart/{produkt}', [App\Http\Controllers\CartController::class, 'store']) ->name('cart.store')->middleware('auth');
 Route::get('/produkts/create', [App\Http\Controllers\ProduktController::class, 'create']) ->name('produkts.create')->middleware('can:Administrator');
 Route::post('/produkts', [App\Http\Controllers\ProduktController::class, 'store']) ->name('produkts.store')->middleware('can:Administrator');
 Route::post('/produkts/{produkt}', [App\Http\Controllers\ProduktController::class, 'update']) -> name('produkts.update') -> middleware('can:Administrator');
