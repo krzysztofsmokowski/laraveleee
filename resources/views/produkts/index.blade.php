@@ -41,9 +41,7 @@
                     <a href="{{ route('produkts.edit', $produkt->id) }}">
                         <button class="btn btn-secondary">Edytuj</button>
                     </a>
-                            <a href="{{ route('produkts.show', $produkt->id) }}">
-                                <button class="btn btn-secondary">pokaz</button>
-                            </a>
+
 
                         <button class="btn btn-danger btn-sm remove" data-id="{{ $produkt->id }}">X</button>
                     </td>
