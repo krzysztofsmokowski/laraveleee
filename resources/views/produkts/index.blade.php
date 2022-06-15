@@ -57,7 +57,7 @@
 @endsection
 @section('javascript')
     const Produkt_data = {
-    do_koszyka: '{{ url('cart') }}/'
+    do_koszyka: '{{ url('cart') }}'
             }
     $(function(){
     $('.remove').click(function(e) {
@@ -73,13 +73,12 @@
     });
     });
     });
-
             $(function() {
             $('button.do-kosza').click(function(event) {
             event.preventDefault();
             $.ajax({
             method: "POST",
-            url: Produkt_data.do_koszyka + $(this).data('id')
+            url: Produkt_data.do_koszyka + '/' + $(this).data('id')
             })
             .done(function () {
             Swal.fire({
