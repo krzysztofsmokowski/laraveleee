@@ -43,6 +43,7 @@ class ProduktController extends Controller
     public function store(ProduktRequest $request): RedirectResponse
     {
         $produkt = new Produkt($request->validated());
+        $produkt->image_path = $request->file('image')->store('produkts');
         $produkt->save();
         return redirect(route('produkts.index'));
     }
@@ -53,12 +54,12 @@ class ProduktController extends Controller
      * @param  Produkt  $produkt
      * @return View
      */
-    public function show(Produkt $produkt): View
-    {
-      return view("produkts.show", [
-        'produkt' => $produkt
-      ]);
-    }
+//    public function show(Produkt $produkt): View
+//    {
+//      return view("produkts.show", [
+//        'produkt' => $produkt
+//      ]);
+ //   }
 
     /**
      * Show the form for editing the specified resource.

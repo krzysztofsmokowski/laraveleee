@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +19,7 @@ Route::get('/produkts', [App\Http\Controllers\ProduktController::class, 'index']
 Route::get('/produkts/create', [App\Http\Controllers\ProduktController::class, 'create']) ->name('produkts.create')->middleware('can:Administrator');
 Route::post('/produkts', [App\Http\Controllers\ProduktController::class, 'store']) ->name('produkts.store')->middleware('can:Administrator');
 Route::post('/produkts/{produkt}', [App\Http\Controllers\ProduktController::class, 'update']) -> name('produkts.update') -> middleware('can:Administrator');
-Route::get('/produkts/{produkt}', [App\Http\Controllers\ProduktController::class, 'show']) ->name('produkts.show')->middleware('auth');
+//Route::get('/produkts/{produkt}', [App\Http\Controllers\ProduktController::class, 'show']) ->name('produkts.show')->middleware('auth');
 Route::get('/produkts/{produkt}', [App\Http\Controllers\ProduktController::class, 'edit']) ->name('produkts.edit')->middleware('auth');
 Route::delete('/produkts/{produkt}',[App\Http\Controllers\ProduktController::class, 'destroy']) -> name('produkts.destroy')->middleware('can:Administrator');
 Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->name('users.index')->middleware('can:Administrator');

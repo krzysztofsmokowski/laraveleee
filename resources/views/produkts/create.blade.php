@@ -52,13 +52,15 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div class="row mb-3">
-                            <label for="image" class="col-md-4 col-form-label text-md-end">sciezka do pliku</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-end">Sciezka do pliku</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="file" class="form-control name="image">
+                                <input id="price" type="file" class="form-control" name="image">
                             </div>
                         </div>
+
                         <div class="row mb-3">
                             <label for="amount" class="col-md-4 col-form-label text-md-end">Ilość</label>
 
