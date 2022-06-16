@@ -24,9 +24,8 @@
             <td>{{  $user->name }}</td>
             <td><button class="btn btn-danger btn-sm remove" data-user-id="{{ $user->id }}">X</button>
                 <a href="{{ route('users.edit', $user->id) }}">
-                    <button class="btn btn-secondary">Edytuj</button>
+                    <button class="btn btn-secondary">Edytuj uzytkownika</button>
                 </a>
-
             </td>
         </tr>
         @endforeach

@@ -84,9 +84,7 @@ class UsersController extends Controller
     public function update(UsersRequest $request, User $user)
     {
         $user->fill($request->validated());
-        //$user->Hash::make($request['password']);
         $user->save();
-
         return redirect(route('users.index'));
     }
 
