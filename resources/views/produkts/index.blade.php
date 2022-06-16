@@ -57,8 +57,10 @@
 @endsection
 @section('javascript')
     const Produkt_data = {
-    do_koszyka: '{{ url('cart') }}'
-            }
+    do_koszyka: '{{ url('cart') }}',
+    koszyk: '{{ url('cart/list') }}'
+    }
+
     $(function(){
     $('.remove').click(function(e) {
     $.ajax({
@@ -90,7 +92,7 @@
             cancelButtonText: '<i class="fas fa-shopping-bag"></i> Kontynuuj zakupy'
             }).then((result) => {
             if (result.isConfirmed) {
-            alert('udalo sie');
+            window.location = Produkt_data.koszyk;
             }
             })
             })

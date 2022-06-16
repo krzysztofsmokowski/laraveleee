@@ -4,7 +4,6 @@ namespace App\ValueObjects;
 
 use App\Models\Produkt;
 use App\ValueObjects\CartItem;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class Cart
@@ -47,14 +46,12 @@ public function removeItem(Produkt $produkt):Cart{
         if (!is_null($item)){
             $items = $items->reject(function ($item)use ($produkt){
                 return $produkt->id == $item->getProduktID();
+                $newitem = $item->addAmmount($produkt);
             });
-            $newitem = $item->addAmmount($produkt);
+
         }else {
             $newitem = new CartItem($produkt);
 }
-//        $cart->setItems($items);
-//        $cart->IncrementTotalAmount();
-//        $cart->IncrementTotalSum($produkt->price);
         $items->add($newitem);
         return new Cart($items);
     }
