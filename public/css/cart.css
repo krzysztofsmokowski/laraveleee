@@ -2,7 +2,7 @@ body{
     background: #ddd;
     min-height: 100vh;
     vertical-align: middle;
-    display: flex;
+    display: block;
     font-family: sans-serif;
     font-size: 0.8rem;
     font-weight: bold;
@@ -11,9 +11,9 @@ body{
     margin-bottom: 5vh;
 }
 .card{
-    margin: auto;
+    margin: 75px 140px 75px;
     max-width: 950px;
-    width: 90%;
+    width: 250%;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 1rem;
     border: transparent;

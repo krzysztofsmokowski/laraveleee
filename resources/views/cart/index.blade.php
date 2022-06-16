@@ -8,7 +8,7 @@
                 <div class="col-md-8 cart">
                     <div class="title">
                         <div class="row">
-                            <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                            <div class="col"><h4><b>Koszyk</b></h4></div>
                             <div class="col align-self-center text-right text-muted"></div>
                         </div>
                     </div>
@@ -20,9 +20,9 @@
                                 <div class="row text-muted">{{ $item->getName() }}</div>
                             </div>
                             <div class="col">
-                                <button class="btn btn-danger btn-sm remove" data-id="{{ $item->getProduktID() }}">
+                                <button class="btn btn-danger btn-sm remove" data-id="{{ $item->getProduktID() }}">Usuń</button>
                             </div>
-                            <div class="col">&euro; {{ $item->getPrice() }} <span class="close">x{{$item->getAmount()}}</span></div>
+                            <div class="col">PLN {{ $item->getPrice() }} <span class="close">x{{$item->getAmount()}}</span></div>
                         </div>
                     </div>
                     <div class="row">
@@ -32,25 +32,25 @@
 
                     </div>
                     @endforeach
-                    <div class="back-to-shop"><a href="{{ route('produkts.index') }}">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+                    <div class="back-to-shop"><a href="{{ route('produkts.index') }}">Wróć do sklepu</a></div>
                 </div>
                 <div class="col-md-4 summary">
-                    <div><h5><b>Summary</b></h5></div>
+                    <div><h5><b>Podsumowanie</b></h5></div>
                     <hr>
                     <div class="row">
                         <div class="col" style="padding-left:0;"></div>
-                        <div class="col text-right">&euro; {{ $cart->getSum() }}</div>
+                        <div class="col text-right">PLN {{ $cart->getSum() }}</div>
                     </div>
                     <form>
-                        <p>SHIPPING</p>
-                        <select><option class="text-muted">Standard-Delivery- &euro;5.00</option></select>
+                        <p>DOSTAWA</p>
+                        <select><option class="text-muted">Dostawa Standardowa - PLN 5.00</option><option class="text-muted">Paczkomaty InPost - PLN 7.00</option></select>
 
                     </form>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                        <div class="col">TOTAL PRICE</div>
-                        <div class="col text-right">&euro;{{ $cart->getSum() }}</div>
+                        <div class="col">SUMA</div>
+                        <div class="col text-right">PLN {{ $cart->getSum() }}</div>
                     </div>
-                    <button class="btn">CHECKOUT</button>
+                    <button class="btn btn-warning">Przejdź do zamówienia</button>
                 </div>
             </div>
 
