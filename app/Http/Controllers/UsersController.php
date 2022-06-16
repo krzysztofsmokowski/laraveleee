@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\AdresRequest;
 use App\Http\Requests\UsersRequest;
+use App\Models\adres;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Hash;
 
 
 
@@ -85,6 +84,38 @@ class UsersController extends Controller
     {
         $user->fill($request->validated());
         $user->save();
+        return redirect(route('users.index'));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  User $user
+     * @param  Request  $request
+     * @return View
+     */
+    public function adresedit(User $user):View
+    {
+        return view('users.adresedit',[
+            'user' => $user
+        ]);
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  AdresRequest  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function adresupdate(AdresRequest $request, User $user)
+    {
+        $addressValidated = $request->validated()['adres'];
+        if ($user->hasAddress()) {
+            $adres = $user->adres;
+            $adres->fill($addressValidated);
+        } else {
+            $adres = new adres($addressValidated);
+        }
+        $user->adres()->save($adres);
         return redirect(route('users.index'));
     }
 

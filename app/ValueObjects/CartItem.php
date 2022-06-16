@@ -58,7 +58,7 @@ class CartItem
     {
         return $this->amount;
     }
-public function getSum(): float{
+    public function getSum(): float{
         return $this->price * $this->amount;
 }
 
@@ -69,7 +69,8 @@ public function getSum(): float{
     {
         return $this->image_path;
     }
-public function addAmmount(Produkt $produkt):CartItem{
-            return new CartItem($produkt, ++$this->amount);
-}
+    public function addAmmount(Produkt $produkt): CartItem
+    {
+        return new CartItem($produkt, ++$this->quantity);
+    }
 }
