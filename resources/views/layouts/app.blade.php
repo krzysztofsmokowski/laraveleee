@@ -62,6 +62,7 @@
                                     <a class = dropdown-item href="/users">Lista użytkowników</a>
                                     @endcan
                                     <a class = dropdown-item href="{{ route('produkts.index') }}">Dostępne produkty</a>
+                                        <a class = dropdown-item href="{{ route('cart.index') }}">Koszyk</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DTOs\Cart\CartDTO;
-use App\DTOs\Cart\CartItemDTO;
 use App\Models\Produkt;
+use App\ValueObjects\Cart;
+use App\ValueObjects\CartItem;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
@@ -22,23 +22,8 @@ class CartController extends Controller
     public function store(Produkt $produkt): JsonResponse
     {
 
-        $cart = Session::get('cart',new CartDTO());
-        $items = $cart->getItems();
-        if (Arr::exists($items, $produkt->id)){
-            $items[$produkt->id]->IncrementAmount();
-        } else{
-            $CartItemDTO = new CartItemDTO();
-            $CartItemDTO->setProduktID($produkt->id);
-            $CartItemDTO->setName($produkt->name);
-            $CartItemDTO->setPrice($produkt->price);
-            $CartItemDTO->setAmount(1);
-            $CartItemDTO->setImagePath($produkt->image_path);
-            $items[$produkt->id] = $CartItemDTO;
-        }
-        $cart->setItems($items);
-        $cart->IncrementTotalAmount();
-        $cart->IncrementTotalSum($produkt->price);
-        Session::put('cart', $cart);
+        $cart = Session::get('cart',new Cart());
+        Session::put('cart', $cart->addItem($produkt));
         return response()->json([
             'status' =>'success']);
     }
@@ -49,7 +34,31 @@ class CartController extends Controller
      */
     public function index(): View
     {
-        dd(Session::get('cart', new CartDTO()));
-        return view('home');
+        //dd(Session::get('cart', new Cart()));
+        return view
+            ('cart.index',[
+            'cart'=>Session::get('cart', new Cart())
+        ]);
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Produkt  $produkt
+     * @return JsonResponse
+     */
+    public function destroy(Produkt $produkt): JsonResponse
+    {
+        try {
+            $cart = Session::get('cart',new Cart());
+            Session::put('cart', $cart->removeItem($produkt));
+            return  response()->json([
+                'status' => 'success'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status'=>'error',
+                'message'=>'ERROR POPSUTE ERROR POPSUTE'
+            ])->setStatusCode(500);
+        }
     }
 }
