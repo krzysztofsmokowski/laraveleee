@@ -15,15 +15,14 @@
                     @foreach($cart->getItems() as $item)
                     <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
+                            <div class="col-2"><img class="img-fluid" src="https://i.pinimg.com/474x/c8/49/a9/c849a9928605b70a7ad15e71f309b1a4.jpg"></div>
                             <div class="col">
                                 <div class="row text-muted">{{ $item->getName() }}</div>
-                                <div class="row">{{ $item->getName() }}</div>
                             </div>
                             <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                                <button class="btn btn-danger btn-sm remove" data-id="{{ $item->getProduktID() }}">
                             </div>
-                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                            <div class="col">&euro; {{ $item->getPrice() }} <span class="close">x{{$item->getAmount()}}</span></div>
                         </div>
                     </div>
                     <div class="row">
@@ -39,18 +38,17 @@
                     <div><h5><b>Summary</b></h5></div>
                     <hr>
                     <div class="row">
-                        <div class="col" style="padding-left:0;">ITEMS 3</div>
-                        <div class="col text-right">&euro; 132.00</div>
+                        <div class="col" style="padding-left:0;"></div>
+                        <div class="col text-right">&euro; {{ $cart->getSum() }}</div>
                     </div>
                     <form>
                         <p>SHIPPING</p>
                         <select><option class="text-muted">Standard-Delivery- &euro;5.00</option></select>
-                        <p>GIVE CODE</p>
-                        <input id="code" placeholder="Enter your code">
+
                     </form>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col">TOTAL PRICE</div>
-                        <div class="col text-right">&euro; {{ $cart->getTotalSum() }}</div>
+                        <div class="col text-right">&euro;{{ $cart->getSum() }}</div>
                     </div>
                     <button class="btn">CHECKOUT</button>
                 </div>
@@ -66,7 +64,7 @@
             $('.remove').click(function(e) {
             $.ajax({
             method: "DELETE",
-            url: `/produkts/${e.target.getAttribute('data-id')}`,
+            url: `/cart/${e.target.getAttribute('data-id')}`,
             })
             .done(function ( response ) {
             alert("Usunięto");

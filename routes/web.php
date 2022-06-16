@@ -24,6 +24,7 @@ Route::post('/produkts/{produkt}', [App\Http\Controllers\ProduktController::clas
 //Route::get('/produkts/{produkt}', [App\Http\Controllers\ProduktController::class, 'show']) ->name('produkts.show')->middleware('auth');
 Route::get('/produkts/{produkt}', [App\Http\Controllers\ProduktController::class, 'edit']) ->name('produkts.edit')->middleware('auth');
 Route::delete('/produkts/{produkt}',[App\Http\Controllers\ProduktController::class, 'destroy']) -> name('produkts.destroy')->middleware('can:Administrator');
+Route::delete('/cart/{produkt}',[App\Http\Controllers\CartController::class, 'destroy']) -> name('cart.destroy')->middleware('can:Administrator');
 Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->name('users.index')->middleware('can:Administrator');
 Route::get('/users/create', [App\Http\Controllers\UsersController::class, 'create']) ->name('users.create')->middleware('can:Administrator');
 Route::post('/users', [App\Http\Controllers\UsersController::class, 'store'])->name('users.store')->middleware('can:Administrator');
