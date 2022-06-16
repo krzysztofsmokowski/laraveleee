@@ -6,9 +6,8 @@ use App\Http\Requests\UsersRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Hash;
+
 
 
 
@@ -82,6 +81,32 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UsersRequest $request, User $user)
+    {
+        $user->fill($request->validated());
+        $user->save();
+        return redirect(route('users.index'));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  User $user
+     * @param  Request  $request
+     * @return View
+     */
+    public function adresedit(User $user):View
+    {
+        return view('users.adresedit',[
+            'user' => $user
+        ]);
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  UsersRequest  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function adresupdate(UsersRequest $request, User $user)
     {
         $user->fill($request->validated());
         $user->save();

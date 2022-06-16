@@ -28,6 +28,9 @@
                 <a href="{{ route('users.edit', $user->id) }}">
                     <button class="btn btn-secondary">Edytuj uzytkownika</button>
                 </a>
+                <a href="{{ route('adresedit.edit', $user->id) }}">
+                    <button class="btn btn-secondary">Edytuj adres uzytkownika</button>
+                </a>
             </td>
         </tr>
         @endforeach
