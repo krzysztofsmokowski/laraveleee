@@ -31,6 +31,7 @@ Route::get('/users/create', [App\Http\Controllers\UsersController::class, 'creat
 Route::post('/users', [App\Http\Controllers\UsersController::class, 'store'])->name('users.store')->middleware('can:Administrator');
 Route::get('/users/{user}', [App\Http\Controllers\UsersController::class, 'edit']) ->name('users.edit')->middleware('can:Administrator');
 Route::get('/adresedit/{user}', [App\Http\Controllers\UsersController::class, 'adresedit']) ->name('adresedit.edit')->middleware('can:Administrator');
+Route::post('/adresedit/{user}', [App\Http\Controllers\UsersController::class, 'adresupdate']) -> name('adresupdate.update') -> middleware('can:Administrator');
 Route::post('/users/{user}', [App\Http\Controllers\UsersController::class, 'update']) -> name('users.update') -> middleware('can:Administrator');
 Route::delete('/users/{id}',[App\Http\Controllers\UsersController::class, 'destroy'])->middleware('can:Moderator');
 

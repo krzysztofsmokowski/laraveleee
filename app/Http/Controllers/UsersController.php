@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\AdresRequest;
 use App\Http\Requests\UsersRequest;
+use App\Models\adres;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
 
 
 
@@ -102,14 +102,20 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UsersRequest  $request
+     * @param  AdresRequest  $request
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function adresupdate(UsersRequest $request, User $user)
+    public function adresupdate(AdresRequest $request, User $user)
     {
-        $user->fill($request->validated());
-        $user->save();
+        $addressValidated = $request->validated()['adres'];
+        if ($user->hasAddress()) {
+            $adres = $user->adres;
+            $adres->fill($addressValidated);
+        } else {
+            $adres = new adres($addressValidated);
+        }
+        $user->adres()->save($adres);
         return redirect(route('users.index'));
     }
 
