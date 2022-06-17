@@ -15,15 +15,14 @@
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($zamowienias as $zamowienie)
+                @foreach($zamowienia as $zamowienie)
                     <tr>
+                        <h1>{{$zamowienie->id}}</h1>
                             <th scope="row">{{  $zamowienie->id }}</th>
                         <td>{{  $zamowienie->id }}</td>
-
                     </tr>
                 @endforeach
                 </tbody>

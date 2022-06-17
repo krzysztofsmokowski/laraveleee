@@ -13,7 +13,6 @@
                             <div class="col"><h4><b>Koszyk</b></h4></div>
                             <div class="col align-self-center text-right text-muted"></div>
 
-
                         </div>
                     </div>
                     @foreach($cart->getItems() as $item)
@@ -24,7 +23,7 @@
                                 <div class="row text-muted">{{ $item->getName() }}</div>
                             </div>
                             <div class="col">
-                                <button class="btn btn-danger btn-sm remove" data-id="{{ $item->getProduktID() }}">Usuń</button>
+                                <button type="button" class="btn btn-danger btn-sm remove" data-id="{{ $item->getProduktID() }}">
                             </div>
                             <div class="col">PLN {{ $item->getPrice() }} <span class="close">x{{$item->getAmount()}}</span></div>
                         </div>
@@ -56,10 +55,9 @@
                     </div>
                     <button type="submit">Przejdź do zamówienia</button>
                 </div>
-                </form>
-
+            </form>
             </div>
-
+            </div>
         </div>
         @endsection
         @section('javascript')
