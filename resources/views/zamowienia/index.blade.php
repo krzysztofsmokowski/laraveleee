@@ -15,17 +15,13 @@
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    @can('Administrator')
-                        <th scope="col">Akcje</th>
-                    @endcan
+
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($zamowienia as $zamowienie)
+                @foreach($zamowienias as $zamowienie)
                     <tr>
-                        @can('Administrator')
                             <th scope="row">{{  $zamowienie->id }}</th>
-                        @endcan
                         <td>{{  $zamowienie->id }}</td>
 
                     </tr>
