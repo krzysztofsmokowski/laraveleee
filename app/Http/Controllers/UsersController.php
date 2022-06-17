@@ -108,12 +108,12 @@ class UsersController extends Controller
      */
     public function adresupdate(AdresRequest $request, User $user)
     {
-        $addressValidated = $request->validated()['adres'];
+        $adresValidated = $request->validated()['adres'];
         if ($user->hasAddress()) {
             $adres = $user->adres;
-            $adres->fill($addressValidated);
+            $adres->fill($adresValidated);
         } else {
-            $adres = new adres($addressValidated);
+            $adres = new adres($adresValidated);
         }
         $user->adres()->save($adres);
         return redirect(route('users.index'));

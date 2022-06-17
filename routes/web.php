@@ -1,16 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +25,8 @@ Route::get('/adresedit/{user}', [App\Http\Controllers\UsersController::class, 'a
 Route::post('/adresedit/{user}', [App\Http\Controllers\UsersController::class, 'adresupdate']) -> name('adresupdate.update') -> middleware('can:Administrator');
 Route::post('/users/{user}', [App\Http\Controllers\UsersController::class, 'update']) -> name('users.update') -> middleware('can:Administrator');
 Route::delete('/users/{id}',[App\Http\Controllers\UsersController::class, 'destroy'])->middleware('can:Moderator');
+Route::get('zamowienia',[App\Http\Controllers\ZamowieniaController::class, 'index'])->name('zamowienia.index')->middleware('auth');
+Route::post('zamowienia',[App\Http\Controllers\ZamowieniaController::class, 'store'])->name('zamowienia.store')->middleware('auth');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
