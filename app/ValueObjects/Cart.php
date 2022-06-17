@@ -30,7 +30,11 @@ public function getSum(): float{
             return $item->getSum();
         });
 }
-
+    public function getAmount(): int{
+        return $this->items->sum(function($item){
+            return $item->getAmount();
+        });
+    }
 public function removeItem(Produkt $produkt):Cart{
         $items = $this->items->reject(function ($item)use ($produkt){
                 return $produkt->id == $item->getProduktID();

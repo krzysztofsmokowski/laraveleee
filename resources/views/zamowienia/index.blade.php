@@ -13,17 +13,26 @@
             </div>
             <div class="row">
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">ID</th>
-
-                </tr>
+                <th scope="row">ID</th>
+                <th scope="row">Ilość</th>
+                <th scope="row">Suma</th>
+                <th scope="row">Nazwa produktów</th>
                 </thead>
                 <tbody>
-                @foreach($zamowienias as $zamowienie)
+                @foreach($zamowienia as $zamowienie)
                     <tr>
-                            <th scope="row">{{  $zamowienie->id }}</th>
-                        <td>{{  $zamowienie->id }}</td>
+                        <th scope="row">{{  $zamowienie->id }}</th>
+                        <th scope="row">{{  $zamowienie->amount }}</th>
+                        <th scope="row">{{  $zamowienie->price }}</th>
+                        <th scope="row">
+                        @foreach($zamowienie->produkts as $produkt)
 
+                            <ul>
+                                <li>{{$produkt->name}} {{ $produkt->description }}</li>
+                            </ul>
+
+                        @endforeach
+                        </th>
                     </tr>
                 @endforeach
                 </tbody>
