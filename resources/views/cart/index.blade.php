@@ -5,6 +5,7 @@
     <div class="container">
         <div class="card">
             <form action="{{ route('zamowienia.store') }}"method="POST" id="zamowienia-form">
+                @csrf
             <div class="row">
                 <div class="col-md-8 cart">
                     <div class="title">
@@ -12,7 +13,7 @@
                             <div class="col"><h4><b>Koszyk</b></h4></div>
                             <div class="col align-self-center text-right text-muted"></div>
 
-                                @csrf
+
                         </div>
                     </div>
                     @foreach($cart->getItems() as $item)
