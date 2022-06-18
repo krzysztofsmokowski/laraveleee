@@ -35,7 +35,7 @@ public function getSum(): float{
             return $item->getAmount();
         });
     }
-public function removeItem(Produkt $produkt):Cart{
+    public function removeItem(Produkt $produkt):Cart{
         $items = $this->items->reject(function ($item)use ($produkt){
                 return $produkt->id == $item->getProduktID();
             }

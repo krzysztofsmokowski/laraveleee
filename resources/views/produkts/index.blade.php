@@ -31,9 +31,8 @@
             <tbody>
             @foreach($produkts as $produkt)
                 <tr>
-                    @can('Administrator')
                     <th scope="row">{{  $produkt->id }}</th>
-                    @endcan
+
                     <td>{{  $produkt->name }}</td>
                     <td>{{  $produkt->description }}</td>
                     <td>{{  $produkt->amount }}</td>

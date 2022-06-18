@@ -71,6 +71,6 @@ class CartItem
     }
     public function addAmmount(Produkt $produkt): CartItem
     {
-        return new CartItem($produkt, ++$this->quantity);
+        return new CartItem($produkt, ++$this->amount);
     }
 }
