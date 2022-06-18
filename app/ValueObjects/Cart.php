@@ -50,12 +50,11 @@ public function getSum(): float{
         if (!is_null($item)){
             $items = $items->reject(function ($item)use ($produkt){
                 return $produkt->id == $item->getProduktID();
-                $newitem = $item->addAmmount($produkt);
             });
-
-        }else {
-            $newitem = new CartItem($produkt);
-}
+            $newitem = $item->addAmmount($produkt);
+            }
+        else {
+            $newitem = new CartItem($produkt);}
         $items->add($newitem);
         return new Cart($items);
     }
